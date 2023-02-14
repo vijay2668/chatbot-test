@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Generator</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="header">
+      <h5>Background Generator</h5>
+      <h5>Hit spacebar to randomize</h5>
+      <div class="theme">
+        <h5>Theme</h5>
+        <i class="fa-solid fa-sun" id="theme-icon"></i>
+      </div>
+    </div>
+      <div class="main">
+        <div class="display">
+          <div class="blur">
+          </div>
+        </div>
+        <div class="configure">
+          <div class="container">
+            <h5>Bg&nbsp;Color</h5>
+            <label class="checkbox-btn">
+              <label for="checkbox"></label>
+              <input id="checkbox" type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+            <div class="color-box">
+              <div style="display: flex; align-items: center;">
+                <input type="color" id="colorInput" value="#FF0000">
+                <p class="color-name">#FF0000</p>
+              </div>
+              <div class="icon" id="colorBtn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+          </div>
+          <div class="container2" >
+            <div class="color-boxes">
+              <div style="display: flex; align-items: center;">
+                <input type="color" class="0" id="colorInputs" value="#FFB87A">
+                <p class="color-names">rgb(255, 184, 122)</p>
+              </div>
+              <div class="icons" id="colorBtn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="color-boxes">
+              <div style="display: flex; align-items: center;">
+                <input type="color" class="1" id="colorInputs" value="#1FDDFF">
+                <p class="color-names">rgb(31, 221, 255)</p>
+              </div>
+              <div class="icons" id="colorBtn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="color-boxes">
+              <div style="display: flex; align-items: center;">
+                <input type="color" class="2" id="colorInputs" value="#FFDBDE">
+                <p class="color-names">rgb(255, 219, 222)</p>
+              </div>
+              <div class="icons" id="colorBtn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="color-boxes">
+              <div style="display: flex; align-items: center;">
+                <input type="color" class="3" id="colorInputs" value="#FF85AD">
+                <p class="color-names">rgb(255, 133, 173)</p>
+              </div>
+              <div class="icons" id="colorBtn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="color-boxes">
+              <div style="display: flex; align-items: center;">
+                <input type="color" class="4" id="colorInputs" value="#FFB58A">
+                <p class="color-names">rgb(255, 181, 138)</p>
+              </div>
+              <div class="icons" id="colorBtn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="color-boxes">
+              <div style="display: flex; align-items: center;">
+                <input type="color" class="5" id="colorInputs" value="#6B66FF">
+                <p class="color-names">rgb(107, 102, 255)</p>
+              </div>
+              <div class="icons" id="colorBtn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="color-boxes">
+              <div style="display: flex; align-items: center;">
+                <input type="color" class="6" id="colorInputs" value="#FF85A7">
+                <p class="color-names">rgb(255, 133, 167)</p>
+              </div>
+              <div class="icons" id="colorBtn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-evenly;">
+            <button class="btn" id="btn">Randomize</button>
+            <button class="export">Copy / Export</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+      </div>
+      <div class="popup">
+        <div class="copy">
+          <i class="fa-regular fa-clipboard"></i>
+          <span>Copy code</span>
+        </div>
+        <div class="code">
+          sample code
+        </div>
+      </div>
+    <script src="app.js"></script>
+  </body>
+</html>
