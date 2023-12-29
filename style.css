@@ -242,7 +242,7 @@ input[type="color" i]::-webkit-color-swatch-wrapper {
   pointer-events: none;
 }
 
-button {
+.btn {
   width: fit-content;
   padding: 10px;
   --border-radius: 15px;
@@ -260,11 +260,11 @@ button {
   cursor: pointer;
  }
 
- .light button{
+ .light .btn{
   color: rgba(148, 163, 184, 1);
  }
  
- button::after {
+ .btn::after {
   --m-i: linear-gradient(#000, #000);
   --m-o: content-box, padding-box;
   content: "";
@@ -296,7 +296,7 @@ button {
   animation-play-state: paused;
  }
  
- button:hover::after {
+ .btn:hover::after {
   animation-play-state: running;
  }
  
@@ -306,12 +306,12 @@ button {
   }
  }
  
- button,
- button::after {
+ .btn,
+ .btn::after {
   box-sizing: border-box;
  }
  
- button:active {
+ .btn:active {
   --border-width: 5px;
  }
 
@@ -460,3 +460,8 @@ button {
   }
 }
 
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
