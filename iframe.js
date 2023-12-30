@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      api_key: chatbotUI?.profile?.user_key
+      user_key: chatbotUI?.profile?.user_key
     })
   });
 
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          api_key: chatbotUI?.profile?.user_key,
+          user_key: chatbotUI?.profile?.user_key,
           thread_id: thread_id,
           query: question
         })
@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          api_key: chatbotUI?.profile?.user_key,
+          user_key: chatbotUI?.profile?.user_key,
           thread_id: thread_id,
           assistant_id: chatbotUI?.bot_id
         })
