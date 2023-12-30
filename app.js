@@ -139,13 +139,13 @@ btn.addEventListener("click", function () {
   display.style.backgroundImage = radialGradients.slice(0, -1);
 });
 
-document.addEventListener("keydown", function (event) {
-  if (event.keyCode === 32) {
-    // Call the button click function here
-    btn.click();
-    event.preventDefault();
-  }
-});
+// document.addEventListener("keydown", function (event) {
+//   if (event.keyCode === 32) {
+//     // Call the button click function here
+//     btn.click();
+//     event.preventDefault();
+//   }
+// });
 
 // give color input control to dropdown btn and change display color
 
