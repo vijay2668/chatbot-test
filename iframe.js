@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      bot_id: "asst_Q6AQMz1MFebjzgurmCJLvqKp"
+      bot_id: "asst_E2VZcIfhk3469aNwAwTsF2au"
     })
   });
 
