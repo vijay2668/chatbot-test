@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      bot_id: "asst_E2VZcIfhk3469aNwAwTsF2au"
+      bot_id: "asst_zmXAOhdPOVnJinNKhfgVZN3p"
     })
   });
 
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      api_key: chatbotUI?.profile?.openAIAPIkey
+      api_key: atob(chatbotUI?.profile?.user_key)
     })
   });
 
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          api_key: chatbotUI?.profile?.openAIAPIkey,
+          api_key: atob(chatbotUI?.profile?.user_key),
           thread_id: thread_id,
           query: question
         })
@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          api_key: chatbotUI?.profile?.openAIAPIkey,
+          api_key: atob(chatbotUI?.profile?.user_key),
           thread_id: thread_id,
           assistant_id: chatbotUI?.bot_id
         })
