@@ -35,50 +35,57 @@ const ui = `<div class="chatui hidden absolute bottom-4 right-4 w-full h-[80vh] 
 </div>
 <button id="toggleButtonOpen" class="accent-color-elem inline-flex z-[99999999] items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full absolute bottom-4 right-4 p-2 h-fit">
   <img id="chat-bubble-icon" alt="chat bubble icon" class="w-8 h-8 invert" />
-</button>    <script src="https://cdn.tailwindcss.com"></script>`;
+</button>`;
 
-    document.body.appendChild(ui);
+// Create a div element to hold the UI content
+const chatUIContainer = document.createElement("div");
+chatUIContainer.innerHTML = ui;
 
-    document.addEventListener("DOMContentLoaded", async function () {
-      // DOM elements
-      const toggleButtonOpen = document.getElementById("toggleButtonOpen");
-      const toggleButtonClose = document.getElementById("toggleButtonClose");
-      const userInputField = document.getElementById("userInput");
-      const messages_list = document.getElementById("messages-list");
-      const fetch_initial = await fetch("https://web-production-949d.up.railway.app/api/fetch-user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          token: "659901b3b278d2dd743cebcf"
-        })
-      });
+document.body.appendChild(chatUIContainer);
 
-      const chatbotUI = await fetch_initial.json();
-      // console.log(chatbotUI);
+document.addEventListener("DOMContentLoaded", async function () {
+  // DOM elements
+  const toggleButtonOpen = document.getElementById("toggleButtonOpen");
+  const toggleButtonClose = document.getElementById("toggleButtonClose");
+  const userInputField = document.getElementById("userInput");
+  const messages_list = document.getElementById("messages-list");
+  const fetch_initial = await fetch(
+    "https://web-production-949d.up.railway.app/api/fetch-user",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        token: "659901b3b278d2dd743cebcf"
+      })
+    }
+  );
 
-      document.getElementById("company-logo").src = chatbotUI?.company_logo;
-      document.getElementById("company-name").textContent = chatbotUI?.company_name;
-      document.getElementById("company-subheading").textContent =
-        chatbotUI?.subheading;
-      document.getElementById("accent-color-elem2").style.fill =
-        chatbotUI?.accent_colour;
-      document.getElementById("chat-bubble-icon").src = chatbotUI?.chat_bubble_icon;
-      userInputField.placeholder = chatbotUI?.input_box_placeholder;
-      const accentColorElements = document.querySelectorAll(".accent-color-elem");
+  const chatbotUI = await fetch_initial.json();
+  // console.log(chatbotUI);
 
-      // Iterate over each element in the NodeList
-      accentColorElements.forEach((element) => {
-        // Apply the background color from chatbotUI.accent_color
-        element.style.background = chatbotUI?.accent_colour;
-      });
+  document.getElementById("company-logo").src = chatbotUI?.company_logo;
+  document.getElementById("company-name").textContent = chatbotUI?.company_name;
+  document.getElementById("company-subheading").textContent =
+    chatbotUI?.subheading;
+  document.getElementById("accent-color-elem2").style.fill =
+    chatbotUI?.accent_colour;
+  document.getElementById("chat-bubble-icon").src = chatbotUI?.chat_bubble_icon;
+  userInputField.placeholder = chatbotUI?.input_box_placeholder;
+  const accentColorElements = document.querySelectorAll(".accent-color-elem");
 
-      // Further processing based on the response
+  // Iterate over each element in the NodeList
+  accentColorElements.forEach((element) => {
+    // Apply the background color from chatbotUI.accent_color
+    element.style.background = chatbotUI?.accent_colour;
+  });
 
-      function message_template(object) {
-        if (object?.role === "assistant") {
-          return `
+  // Further processing based on the response
+
+  function message_template(object) {
+    if (object?.role === "assistant") {
+      return `
           <div class="relative p-4 flex space-x-1 items-start justify-start">
           <div class="p-1 mt-1.5 border border-black rounded-full">
               <img id="chat-bubble-icon" src=${chatbotUI?.chat_bubble_icon} alt="chat bubble icon" class="w-3 h-3" />
@@ -88,8 +95,8 @@ const ui = `<div class="chatui hidden absolute bottom-4 right-4 w-full h-[80vh] 
             </div>
             </div>
             `;
-        } else {
-          return `
+    } else {
+      return `
           <div class="relative p-4 flex space-x-1 items-start justify-end">
             <div class="text-sm bg-[${chatbotUI?.accent_colour}] text-white p-2 px-2  shadow-md max-w-[250px] rounded-xl">
             <p>${object?.message}</p>
@@ -111,117 +118,119 @@ const ui = `<div class="chatui hidden absolute bottom-4 right-4 w-full h-[80vh] 
             </div>
             </div>
             `;
-        }
-      }
+    }
+  }
 
-      messages_list.innerHTML = message_template({
-        message: chatbotUI?.welcome_message,
-        role: "assistant"
-      });
+  messages_list.innerHTML = message_template({
+    message: chatbotUI?.welcome_message,
+    role: "assistant"
+  });
 
-      const create_thread = await fetch("https://web-production-949d.up.railway.app/api/create-thread", {
+  const create_thread = await fetch(
+    "https://web-production-949d.up.railway.app/api/create-thread",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user_key: chatbotUI?.profile?.user_key
+      })
+    }
+  );
+
+  const thread_id = await create_thread.json();
+  // console.log(thread_id);
+
+  // Toggle button click event
+  toggleButtonOpen.addEventListener("click", function () {
+    // Toggle the visibility of the chat UI
+    const chatUI = document.querySelector(".chatui");
+    chatUI.classList.remove("hidden");
+    toggleButtonOpen.classList.add("hidden");
+  });
+
+  toggleButtonClose.addEventListener("click", function () {
+    // Toggle the visibility of the chat UI
+    const chatUI = document.querySelector(".chatui");
+    chatUI.classList.add("hidden");
+    toggleButtonOpen.classList.remove("hidden");
+  });
+
+  // Form submit event
+  const form = document.querySelector("form");
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    // Get user input
+    const userInput = userInputField.value;
+
+    const question = userInput.trim();
+
+    if (question === "" || !question) return;
+
+    const create_user_message = await fetch(
+      "https://web-production-949d.up.railway.app/api/create-user-message",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          user_key: chatbotUI?.profile?.user_key
+          user_key: chatbotUI?.profile?.user_key,
+          thread_id: thread_id,
+          query: question
         })
-      });
+      }
+    );
 
-      const thread_id = await create_thread.json();
-      // console.log(thread_id);
+    const user_message = await create_user_message.json();
 
-      // Toggle button click event
-      toggleButtonOpen.addEventListener("click", function () {
-        // Toggle the visibility of the chat UI
-        const chatUI = document.querySelector(".chatui");
-        chatUI.classList.remove("hidden");
-        toggleButtonOpen.classList.add("hidden");
-      });
+    if (user_message?.statusCode) {
+      // console.log(user_message?.message);
+      return;
+    }
 
-      toggleButtonClose.addEventListener("click", function () {
-        // Toggle the visibility of the chat UI
-        const chatUI = document.querySelector(".chatui");
-        chatUI.classList.add("hidden");
-        toggleButtonOpen.classList.remove("hidden");
-      });
-
-      // Form submit event
-      const form = document.querySelector("form");
-      form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        // Get user input
-        const userInput = userInputField.value;
-
-        const question = userInput.trim();
-
-        if (question === "" || !question) return;
-
-        const create_user_message = await fetch(
-          "https://web-production-949d.up.railway.app/api/create-user-message",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              user_key: chatbotUI?.profile?.user_key,
-              thread_id: thread_id,
-              query: question
-            })
-          }
-        );
-
-        const user_message = await create_user_message.json();
-
-        if (user_message?.statusCode) {
-          // console.log(user_message?.message);
-          return;
-        }
-
-        messages_list.innerHTML += message_template({
-          role: "user",
-          message: user_message
-        });
-
-        // Clear the input field
-        userInputField.value = "";
-        userInputField.placeholder = "Wait a second...";
-        userInputField.disabled = true;
-        document.getElementById("send").disabled = true;
-
-        const get_bot_message = await fetch(
-          "https://web-production-949d.up.railway.app/api/get-bot-message",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              user_key: chatbotUI?.profile?.user_key,
-              thread_id: thread_id,
-              assistant_id: chatbotUI?.bot_id
-            })
-          }
-        );
-
-        const bot_message = await get_bot_message.json();
-
-        if (bot_message?.statusCode) {
-          // console.log(bot_message?.message);
-          return;
-        }
-
-        messages_list.innerHTML += message_template({
-          role: bot_message?.role,
-          message: bot_message?.message
-        });
-
-        userInputField.placeholder = chatbotUI?.input_box_placeholder;
-        userInputField.disabled = false;
-        document.getElementById("send").disabled = false;
-      });
+    messages_list.innerHTML += message_template({
+      role: "user",
+      message: user_message
     });
-  
+
+    // Clear the input field
+    userInputField.value = "";
+    userInputField.placeholder = "Wait a second...";
+    userInputField.disabled = true;
+    document.getElementById("send").disabled = true;
+
+    const get_bot_message = await fetch(
+      "https://web-production-949d.up.railway.app/api/get-bot-message",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user_key: chatbotUI?.profile?.user_key,
+          thread_id: thread_id,
+          assistant_id: chatbotUI?.bot_id
+        })
+      }
+    );
+
+    const bot_message = await get_bot_message.json();
+
+    if (bot_message?.statusCode) {
+      // console.log(bot_message?.message);
+      return;
+    }
+
+    messages_list.innerHTML += message_template({
+      role: bot_message?.role,
+      message: bot_message?.message
+    });
+
+    userInputField.placeholder = chatbotUI?.input_box_placeholder;
+    userInputField.disabled = false;
+    document.getElementById("send").disabled = false;
+  });
+});
