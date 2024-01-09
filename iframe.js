@@ -37,7 +37,7 @@ const ui = `<div class="chatui hidden absolute bottom-4 right-4 w-full h-[80vh] 
   <img id="chat-bubble-icon" alt="chat bubble icon" class="w-8 h-8 invert" />
 </button>    <script src="https://cdn.tailwindcss.com"></script>`;
 
-    document.write(ui);
+    document.body.appendChild(ui);
 
     document.addEventListener("DOMContentLoaded", async function () {
       // DOM elements
