@@ -737,7 +737,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   let visitorId = JSON.parse(localStorage.getItem("visitorId")) || null;
 
-  const fetch_initial = await fetch("http://127.0.0.1:8000/api/fetch-chatbot", {
+  const fetch_initial = await fetch("https://chatbot-server-2668.vercel.app/api/fetch-chatbot", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -1112,7 +1112,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (!messagesId) {
       const generate_sessionId = await fetch(
-        "http://127.0.0.1:8000/api/generate-sessionId",
+        "https://chatbot-server-2668.vercel.app/api/generate-sessionId",
         {
           method: "POST",
           headers: {
@@ -1183,7 +1183,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     //   })
     // );
 
-    const response = await fetch("http://127.0.0.1:8000/api/get-bot-message", {
+    const response = await fetch("https://chatbot-server-2668.vercel.app/api/get-bot-message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
